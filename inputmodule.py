@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#test, test successfull
+>>>>>>> 213cc8b0c9150833c49b661e18a5eaf474992a2a
 import random
 import matplotlib.pyplot as plt
 overs = int(input("Enter number of overs: "))
