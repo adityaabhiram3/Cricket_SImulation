@@ -1,13 +1,14 @@
 import random
-overs = int(input("The total no. of overs :"))
+overs = int(input("The desired game is of :"))
 balls = overs*6
 over_rate = []
 score_rate = []
 wickets = 0
 total_score = 0
 individual_runs = []
-fow = []
+e = []
 team = ['Rohit','Dhawan','Kohli','Jadhav','Raina','Dhoni','Pandya','Bhuveneshwar','Bumrah','Chahal','Kuldeep']
+fow = []
 for i in range(11) :
     individual_runs.append([])
 strike = -1
@@ -51,14 +52,23 @@ for i in range(1,balls+1):
         else :
             print("{0} is on strike".format(team[pitch_end1]) )
         total_score += sum(over_rate)
+        e.append(sum(over_rate))
         over_rate = []
         score_rate = []
-        print("{0} and {1} are playing".format(team[pitch_end1],team[pitch_end2]))
+for i in range(wickets+2) :
+    print(team[i],':',sum(individual_runs[i]))
+    if pitch_end1 != i or pitch_end2 != i :
+        fow.append(team[i])
 print('total no. of wickets are :',wickets)
 print("the total score is :",total_score)
-print("the net run rate is :",total_score/overs)
-for i in range(wickets+2) :
-    if i != pitch_end1 and i != pitch_end2 :
-        fow.append(team[i])
-    print(team[i],':',sum(individual_runs[i]))
-print("fall of wickets :",fow)
+print(fow)   
+graph1 = list()
+for k in range(1, overs+1):
+    graph1.append(sum(e[0:k]))
+print(graph1)
+plt.plot(graph1)
+plt.show()
+print()
+t = range(1, overs+1)
+plt.bar(t, e)
+plt.show()
