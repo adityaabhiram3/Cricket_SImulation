@@ -1,4 +1,5 @@
 import random
+import matplotlib.pyplot as plt
 overs = int(input("The desired game is of :"))
 balls = overs*6
 over_rate = []
