@@ -63,6 +63,9 @@ for i in range(1,balls+1):
         score_rate = []
         print("{0} and {1} are playing".format(team[pitch_end1],team[pitch_end2]))
     if wickets == 10:
+        for p in range((i//6)+1, overs+1):
+            e.append(0)
+        overs_played = "{0}.{1}".format((i//6)+1, i%6)
         break
 print('__________________________________')
 print("\nTotal Score: ",total_score)
@@ -88,6 +91,8 @@ graph1 = list()
 graph1.append(0)
 for k in range(1, overs+1):
     graph1.append(sum(e[0:k]))
+if wickets == 10:
+    print("Overs Played", overs_played)
 # print(graph1)
 print("__________________________________")
 choice = input("Show graphs? (Y/N) ")
@@ -100,9 +105,9 @@ if (choice == 'Y') or (choice == 'y'):
     plt.show()
     print()
     t = range(1, overs+1)
-    if wickets != 10:
-        plt.bar(t, e)
-        plt.title('Runs per over')
-        plt.ylabel('Runs')
-        plt.xlabel('Over')
-        plt.show()
+    # if wickets != 10:
+    plt.bar(t, e)
+    plt.title('Runs per over')
+    plt.ylabel('Runs')
+    plt.xlabel('Over')
+    plt.show()
