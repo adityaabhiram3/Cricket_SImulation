@@ -85,6 +85,7 @@ if wickets == 10:
 print()
 print("fall of wickets :",fow)
 graph1 = list()
+graph1.append(0)
 for k in range(1, overs+1):
     graph1.append(sum(e[0:k]))
 # print(graph1)
@@ -95,6 +96,7 @@ if (choice == 'Y') or (choice == 'y'):
     plt.xlabel("OVERS")
     plt.ylabel("RUNS")
     plt.title("RUN ANALYSIS")
+    plt.xticks(range(0, overs+1))
     plt.show()
     print()
     t = range(1, overs+1)
