@@ -100,4 +100,7 @@ if (choice == 'Y') or (choice == 'y'):
     t = range(1, overs+1)
     if wickets != 10:
         plt.bar(t, e)
+        plt.title('Runs per over')
+        plt.ylabel('Runs')
+        plt.xlabel('Over')
         plt.show()
