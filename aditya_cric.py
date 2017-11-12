@@ -69,13 +69,18 @@ print("\nTotal Score: ",total_score)
 print('Wickets:' ,wickets)
 print("Net run rate: ",total_score/overs)
 print()
-for i in range(wickets+2) :             #was showing one batsman less now corrected
-    if i != pitch_end1 and i != pitch_end2 :
-        fow.append(team[i])
-    if len(individual_runs[i]) != 0:
-        print("{0}: {1} ({2})  Strike rate = {3}".format(team[i], sum(individual_runs[i]), len(individual_runs[i]),round((sum(individual_runs[i])/len(individual_runs[i]))*100, 2 )))
+if wickets != 10 :
+    for i in range(wickets+2) :
+        if i != pitch_end1 and i != pitch_end2 :
+            fow.append(team[i])
+        if len(individual_runs[i]) != 0:
+            print("{0}: {1} ({2})  Strike rate = {3}".format(team[i], sum(individual_runs[i]), len(individual_runs[i]),round((sum(individual_runs[i])/len(individual_runs[i]))*100, 2 )))
 if wickets == 10:
-    fow.append(team[i])
+     for i in range(wickets+1) :
+        if i != pitch_end1 and i != pitch_end2 :
+            fow.append(team[i])
+        if len(individual_runs[i]) != 0:
+            print("{0}: {1} ({2})  Strike rate = {3}".format(team[i], sum(individual_runs[i]), len(individual_runs[i]),round((sum(individual_runs[i])/len(individual_runs[i]))*100, 2 )))
 # fow.pop(-1)
 print()
 print("fall of wickets :",fow)
