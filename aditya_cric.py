@@ -69,7 +69,7 @@ print("\nTotal Score: ",total_score)
 print('Wickets:' ,wickets)
 print("Net run rate: ",total_score/overs)
 print()
-for i in range(wickets+1) :
+for i in range(wickets+2) :             #was showing one batsman less now corrected
     if i != pitch_end1 and i != pitch_end2 :
         fow.append(team[i])
     if len(individual_runs[i]) != 0:
