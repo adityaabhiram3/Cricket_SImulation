@@ -1,6 +1,7 @@
 # https://github.com/nilay1024/Cricket_project.git
 
 import random
+import numpy as np
 import os
 import matplotlib.pyplot as plt
 import time
@@ -204,10 +205,13 @@ if (choice == 'Y') or (choice == 'y'):
     # plt.xticks(range(0, overs+1))
     plt.show()
     print()
-    t = range(1, overs+1)
+    t = np.arange(1, overs+1)
+    width = 0.35
     # if wickets != 10:
-    plt.bar(t, e)
-    # plt.bar(t, e1)
+    plt.bar(t, e, width)
+    plt.bar(t+width, e1, width)
+    # plt.legend([t, t+width], ['India', 'New Zealand'])
+    # plt.xticks(range(1, overs+1))
     plt.title('Runs per over')
     plt.ylabel('Runs')
     plt.xlabel('Over')
