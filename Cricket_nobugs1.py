@@ -76,7 +76,12 @@ for i in range(1,balls+1):
         strike = strike*(-1)
     if i%6 == 0 :
         strike = strike*(-1)
-        print(score_rate,"runs scored in this over is :-",sum(over_rate))
+        for q in score_rate:
+            if q == 'w':
+                print(red.format(q), end = " ")
+            else:
+                print(q, end =" ")
+        print(" runs scored in this over is :-",sum(over_rate))
         if strike == 1 :
             print("{0} is on strike".format(team[pitch_end2]) )
         else :
@@ -107,7 +112,7 @@ if wickets == 10:
         if i != pitch_end1 and i != pitch_end2 :
             fow.append(team[i])
         if len(individual_runs[i]) != 0:
-            print("{0}: {1} ({2})  Strike rate = {3}".format(team[i], sum(individual_runs[i]), len(individual_runs[i]),round((sum(individual_runs[i])/len(individual_runs[i]))*100, 2 )))
+            print(blue.format("{0}: {1} ({2})  Strike rate = {3}".format(team[i], sum(individual_runs[i]), len(individual_runs[i]),round((sum(individual_runs[i])/len(individual_runs[i]))*100, 2 ))))
 # fow.pop(-1)
 print()
 print("fall of wickets :",fow)
@@ -166,7 +171,13 @@ for i in range(1,balls+1):
         strike = strike*(-1)
     if i%6 == 0 :
         strike = strike*(-1)
-        print(score_rate1,"runs scored in this over is :-",sum(over_rate1))
+        for q in score_rate1:
+            if q == 'w':
+                print(red.format(q), end = " ")
+            else:
+                print(q, end =" ")
+        print(" runs scored in this over is :-",sum(over_rate1))
+        # print(score_rate1,"runs scored in this over is :-",sum(over_rate1))
         if strike == 1 :
             print("{0} is on strike".format(team1[pitch_end2]) )
         else :
@@ -182,22 +193,22 @@ for i in range(1,balls+1):
         overs_played1 = "{0}.{1}".format((i//6), i%6)
         break
 print('__________________________________')
-print("\nTotal Score: ",total_score1)
-print('Wickets:' ,wickets1)
-print("Net run rate: ",total_score1/overs)
+print(red.format("\nTotal Score: "),total_score1)
+print(red.format('Wickets:') ,wickets1)
+print(red.format("Net run rate: "),total_score1/overs)
 print()
 if wickets1 != 10 :
     for i in range(wickets1+2) :
         if i != pitch_end1 and i != pitch_end2 :
             fow1.append(team1[i])
         if len(individual_runs1[i]) != 0:
-            print("{0}: {1} ({2})  Strike rate = {3}".format(team1[i], sum(individual_runs1[i]), len(individual_runs1[i]),round((sum(individual_runs1[i])/len(individual_runs1[i]))*100, 2 )))
+            print(blue.format("{0}: {1} ({2})  Strike rate = {3}".format(team1[i], sum(individual_runs1[i]), len(individual_runs1[i]),round((sum(individual_runs1[i])/len(individual_runs1[i]))*100, 2 ))))
 if wickets1 == 10:
      for i in range(wickets1+1) :
         if i != pitch_end1 and i != pitch_end2 :
             fow1.append(team1[i])
         if len(individual_runs1[i]) != 0:
-            print("{0}: {1} ({2})  Strike rate = {3}".format(team1[i], sum(individual_runs1[i]), len(individual_runs1[i]),round((sum(individual_runs1[i])/len(individual_runs1[i]))*100, 2 )))
+            print(blue.format("{0}: {1} ({2})  Strike rate = {3}".format(team1[i], sum(individual_runs1[i]), len(individual_runs1[i]),round((sum(individual_runs1[i])/len(individual_runs1[i]))*100, 2 ))))
 # fow.pop(-1)
 print()
 print("fall of wickets :",fow1)
