@@ -239,19 +239,24 @@ else:
 
 # Highest scoring batsman of the winning team gets the man of the match
 
+highest = 0
+teamwon = 0
+
 if total_score > total_score1:
-    highest = 0
+    # highest = 0
     for i in range(len(individual_runs)):
         if sum(individual_runs[highest]) < sum(individual_runs[i]):
             highest = i
     print("Man of the match is: ", team[highest])
     # highest = max(sum(individual_runs[i]))
+    teamwon = 1
 else:
-    highest = 0
+    # highest = 0
     for i in range(len(individual_runs1)):
         if sum(individual_runs1[highest]) < sum(individual_runs1[i]):
             highest = i
     print("Man of the match is: ", team1[highest])
+    teamwon = 2
 
 print("__________________________________")
 
@@ -275,6 +280,23 @@ def graphs():
     plt.xlabel('Over')
     plt.show()
 
+def motm():
+    if teamwon == 1:
+        man = team[highest]
+        runs = sum(individual_runs[highest])
+        balls = len(individual_runs[highest])
+        strikerate = round((runs/balls)*100, 2)
+    elif teamwon == 2:
+        man = team1[highest]
+        runs = sum(individual_runs1[highest])
+        balls = len(individual_runs1[highest])
+        strikerate = round((runs/balls)*100, 2)
+    mainWindow1 = tkinter.Tk()
+    mainWindow1.title("Man of the match details")
+    mainWindow1.geometry('640x480')
+    label = tkinter.Label(mainWindow1, text = "\n\nMan of the match is {0}\n\nRuns Scored: {1}\n Balls Played: {2}\nStrike Rate: {3}".format(man, runs, balls, strikerate))
+    label.pack(side = 'top')
+    mainWindow1.mainloop()
 
 mainWindow = tkinter.Tk()
 
@@ -284,6 +306,8 @@ label = tkinter.Label(mainWindow, text = "Cricket SCORECARD\n\n")
 label.pack(side = 'top')
 B = tkinter.Button(text ="Click to display graphs", command = graphs, activeforeground="red",fg="green",relief="ridge", borderwidth = 2)
 B.pack(side = 'top')
+button2 = tkinter.Button(text = "Man of the match details", command = motm)
+button2.pack(side = 'top')
 mainWindow.mainloop()
 # choice = input("Show graphs? (Y/N) ")
 # if (choice == 'Y') or (choice == 'y'):
