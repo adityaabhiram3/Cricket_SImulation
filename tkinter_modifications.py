@@ -260,6 +260,7 @@ else:
 
 print("__________________________________")
 
+# GUI using TKinter
 
 def graphs():
     plt.plot(graph1)
@@ -280,25 +281,135 @@ def graphs():
     plt.xlabel('Over')
     plt.show()
 
-def motm():
+def motm(x1):
+    highest = x1
     if teamwon == 1:
         man = team[highest]
         runs = sum(individual_runs[highest])
         balls = len(individual_runs[highest])
+        if balls == 0:
+            balls += 1
         strikerate = round((runs/balls)*100, 2)
+        sixes = individual_runs[highest].count(6)
+        fours = individual_runs[highest].count(4)
     elif teamwon == 2:
         man = team1[highest]
         runs = sum(individual_runs1[highest])
         balls = len(individual_runs1[highest])
+        if balls == 0:
+            balls += 1
         strikerate = round((runs/balls)*100, 2)
+        sixes = individual_runs1[highest].count(6)
+        fours = individual_runs1[highest].count(4)
     mainWindow1 = tkinter.Tk()
     mainWindow1.title("Man of the match details")
     mainWindow1.geometry('640x480')
-    label = tkinter.Label(mainWindow1, text = "\n\nMan of the match is {0}\n\nRuns Scored: {1}\n Balls Played: {2}\nStrike Rate: {3}".format(man, runs, balls, strikerate))
+    label = tkinter.Label(mainWindow1, text = "\n\nMan of the match is {0}\n\nRuns Scored: {1}\n Balls Played: {2}\nStrike Rate: {3}\nFours: {4}\nSixes: {5}".format(man, runs, balls, strikerate, fours, sixes))
     label.pack(side = 'top')
     mainWindow1.mainloop()
 
-mainWindow = tkinter.Tk()
+def playerstats(i, x):
+    # highest = i
+    if x == 1:
+        man = team[i]
+        runs = sum(individual_runs[i])
+        balls = len(individual_runs[i])
+        if balls == 0:
+            balls += 1
+        strikerate = round((runs/balls)*100, 2)
+        sixes = individual_runs[i].count(6)
+        fours = individual_runs[i].count(4)
+    elif x == 2:
+        man = team1[i]
+        runs = sum(individual_runs1[i])
+        balls = len(individual_runs1[i])
+        if balls == 0:
+            balls += 1
+        strikerate = round((runs/balls)*100, 2)
+        sixes = individual_runs1[i].count(6)
+        fours = individual_runs1[i].count(4)
+    mainWindow3 = tkinter.Tk()
+    mainWindow3.title("Player Stats")
+    mainWindow3.geometry('640x480')
+    label = tkinter.Label(mainWindow3, text = "\n\nName: {0}\n\nRuns Scored: {1}\n Balls Played: {2}\nStrike Rate: {3}\nFours: {4}\nSixes: {5}".format(man, runs, balls, strikerate, fours, sixes))
+    label.pack(side = 'top')
+    mainWindow3.mainloop()
+
+def getplayer():
+    button2 = list()
+    mainWindow2 = tkinter.Tk()
+    mainWindow2.title("Player Stats")
+    mainWindow2.geometry('640x480')
+    label = tkinter.Label(mainWindow2, text = "Player Stats\n\n")
+    label.pack(side = 'top')
+    button11 = tkinter.Button(mainWindow2, text = team[0], command = lambda: playerstats(0, 1))
+    button12 = tkinter.Button(mainWindow2, text = team[1], command = lambda: playerstats(1, 1))
+    button13 = tkinter.Button(mainWindow2, text = team[2], command = lambda: playerstats(2, 1))
+    button14 = tkinter.Button(mainWindow2, text = team[3], command = lambda: playerstats(3, 1))
+    button15 = tkinter.Button(mainWindow2, text = team[4], command = lambda: playerstats(4, 1))
+    button16 = tkinter.Button(mainWindow2, text = team[5], command = lambda: playerstats(5, 1))
+    button17 = tkinter.Button(mainWindow2, text = team[6], command = lambda: playerstats(6, 1))
+    button18 = tkinter.Button(mainWindow2, text = team[7], command = lambda: playerstats(7, 1))
+    button19 = tkinter.Button(mainWindow2, text = team[8], command = lambda: playerstats(8, 1))
+    button20 = tkinter.Button(mainWindow2, text = team[9], command = lambda: playerstats(9, 1))
+    button21 = tkinter.Button(mainWindow2, text = team[10], command = lambda: playerstats(10, 1))
+    
+    button11.pack(side = 'top')
+    button12.pack(side = 'top')
+    button13.pack(side = 'top')
+    button14.pack(side = 'top')
+    button15.pack(side = 'top')
+    button16.pack(side = 'top')
+    button17.pack(side = 'top')
+    button18.pack(side = 'top')
+    button19.pack(side = 'top')
+    button20.pack(side = 'top')
+    button21.pack(side = 'top')
+
+    # for i in range(len(team)):
+    #     button2.append(i)
+    #     button2[i] = tkinter.Button(mainWindow2, text = team[i], command = lambda: playerstats(i))
+    #     button2[i].pack(side = 'top')
+    mainWindow2.mainloop()
+
+def getplayer1():
+    # button2 = list()
+    mainWindow4 = tkinter.Tk()
+    mainWindow4.title("Player Stats")
+    mainWindow4.geometry('640x480')
+    label = tkinter.Label(mainWindow4, text = "Player Stats\n\n")
+    label.pack(side = 'top')
+    button11 = tkinter.Button(mainWindow4, text = team1[0], command = lambda: playerstats(0, 2))
+    button12 = tkinter.Button(mainWindow4, text = team1[1], command = lambda: playerstats(1, 2))
+    button13 = tkinter.Button(mainWindow4, text = team1[2], command = lambda: playerstats(2, 2))
+    button14 = tkinter.Button(mainWindow4, text = team1[3], command = lambda: playerstats(3, 2))
+    button15 = tkinter.Button(mainWindow4, text = team1[4], command = lambda: playerstats(4, 2))
+    button16 = tkinter.Button(mainWindow4, text = team1[5], command = lambda: playerstats(5, 2))
+    button17 = tkinter.Button(mainWindow4, text = team1[6], command = lambda: playerstats(6, 2))
+    button18 = tkinter.Button(mainWindow4, text = team1[7], command = lambda: playerstats(7, 2))
+    button19 = tkinter.Button(mainWindow4, text = team1[8], command = lambda: playerstats(8, 2))
+    button20 = tkinter.Button(mainWindow4, text = team1[9], command = lambda: playerstats(9, 2))
+    button21 = tkinter.Button(mainWindow4, text = team1[10], command = lambda: playerstats(10, 2))
+    
+    button11.pack(side = 'top')
+    button12.pack(side = 'top')
+    button13.pack(side = 'top')
+    button14.pack(side = 'top')
+    button15.pack(side = 'top')
+    button16.pack(side = 'top')
+    button17.pack(side = 'top')
+    button18.pack(side = 'top')
+    button19.pack(side = 'top')
+    button20.pack(side = 'top')
+    button21.pack(side = 'top')
+
+    # for i in range(len(team)):
+    #     button2.append(i)
+    #     button2[i] = tkinter.Button(mainWindow2, text = team[i], command = lambda: playerstats(i))
+    #     button2[i].pack(side = 'top')
+    mainWindow4.mainloop()
+
+mainWindow = tkinter.Tk() # initialization of a new TKinter window
 
 mainWindow.title("Cricket SCORECARD")
 mainWindow.geometry('640x480')
@@ -306,25 +417,16 @@ label = tkinter.Label(mainWindow, text = "Cricket SCORECARD\n\n")
 label.pack(side = 'top')
 B = tkinter.Button(text ="Click to display graphs", command = graphs, activeforeground="red",fg="green",relief="ridge", borderwidth = 2)
 B.pack(side = 'top')
-button2 = tkinter.Button(text = "Man of the match details", command = motm)
+x1 = highest
+button2 = tkinter.Button(text = "Man of the match stats", command = lambda: motm(x1))
 button2.pack(side = 'top')
+
+button3 = tkinter.Button(text = "Team 1 Player Stats", command = getplayer)
+button3.pack(side = 'top')
+
+button4 = tkinter.Button(text = "Team 2 Player Stats", command = getplayer1)
+button4.pack(side = 'top')
+
+
 mainWindow.mainloop()
-# choice = input("Show graphs? (Y/N) ")
-# if (choice == 'Y') or (choice == 'y'):
-#     plt.plot(graph1)
-#     plt.plot(graph2)
-#     plt.xlabel("OVERS")
-#     plt.ylabel("RUNS")
-#     plt.title("RUN ANALYSIS")
-#     # plt.xticks(range(0, overs+1))
-#     plt.show()
-#     print()
-#     t = np.arange(1, overs+1) # creates an array of integers from 1 to number of overs
-#     width = 0.35
-#     # if wickets != 10:
-#     plt.bar(t, e, width) # for plotting bar graph
-#     plt.bar(t+width, e1, width)
-#     plt.title('Runs per over')
-#     plt.ylabel('Runs')
-#     plt.xlabel('Over')
-#     plt.show()
+
