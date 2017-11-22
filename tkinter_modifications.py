@@ -315,8 +315,9 @@ def playerstats(i, x):
         runs = sum(individual_runs[i])
         balls = len(individual_runs[i])
         if balls == 0:
-            balls += 1
-        strikerate = round((runs/balls)*100, 2)
+            strikerate = 0
+        else:
+            strikerate = round((runs/balls)*100, 2)
         sixes = individual_runs[i].count(6)
         fours = individual_runs[i].count(4)
     elif x == 2:
@@ -324,8 +325,9 @@ def playerstats(i, x):
         runs = sum(individual_runs1[i])
         balls = len(individual_runs1[i])
         if balls == 0:
-            balls += 1
-        strikerate = round((runs/balls)*100, 2)
+            strikerate = 0
+        else:
+            strikerate = round((runs/balls)*100, 2)
         sixes = individual_runs1[i].count(6)
         fours = individual_runs1[i].count(4)
     mainWindow3 = tkinter.Tk()
