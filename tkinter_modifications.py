@@ -9,6 +9,7 @@ import numpy as np
 import os
 # import matplotlib.pyplot as plt
 import time
+from PIL import Image, ImageTk
 
 # Color codes (Unicode values)
 heading = "\033[1;32;50m{0}\033[00m"
@@ -20,6 +21,8 @@ magenta="\033[1;35;47m{0}\033[00m"
 os.system('clear') # clears the terminal window
 print("\n                           ", end = " ")
 print(heading.format("CRICKET MATCH SCORECARD\n"))
+print("\n                           ", end = " ")
+print(heading.format("India vs New Zealand\n"))
 overs = int(input("The total no. of overs :"))
 balls = overs*6
 over_rate = [] # contains runs scored in every over
@@ -44,15 +47,13 @@ strike = -1
 pitch_end1 = 0
 pitch_end2 = 1
 for i in range(1,balls+1):
-    if pitch_end2 > 10: # if more than 10 wickets fell, it breaks out of the loop
-        # pitch_end2 -= 1
+    if pitch_end2 > 10: # if more than 10 wickets fall, it breaks out of the loop
         break
     if pitch_end1 > 10:
-        # pitch_end1 -= 1
         break
     time.sleep(0.1)  # time delay
     run = random.randrange(-1,7)
-    while run == 5 :  # run should not be equal to 5
+    while run == 5 :  # runs should not be equal to 5
         run = random.randrange(-1,7)
     if run == -1 :  # condition of wicket
         wickets += 1
@@ -130,7 +131,6 @@ for k in range(1, overs+1): # creates a list to be plotted for graph (values of 
     graph1.append(sum(e[0:k]))
 if wickets == 10:
     print("Overs Played", overs_played)
-# print(graph1)
 print("__________________________________")
 
 choice1 = input("Press Enter to start second innings")
@@ -217,7 +217,7 @@ if wickets1 == 10:
             fow1.append(team1[i])
         if len(individual_runs1[i]) != 0:
             print(blue.format("{0}: {1} ({2})  Strike rate = {3}".format(team1[i], sum(individual_runs1[i]), len(individual_runs1[i]), round((sum(individual_runs1[i])/len(individual_runs1[i]))*100, 2 ))))
-# fow.pop(-1)
+
 print()
 print("fall of wickets :", fow1)
 graph2 = list()
@@ -302,14 +302,13 @@ def motm(x1):
         sixes = individual_runs1[highest].count(6)
         fours = individual_runs1[highest].count(4)
     mainWindow1 = tkinter.Tk()
-    mainWindow1.title("Man of the match details")
-    mainWindow1.geometry('640x480')
+    mainWindow1.title("Man of the match details") # window title
+    mainWindow1.geometry('640x480') # resolution of the new window
     label = tkinter.Label(mainWindow1, text = "\n\nMan of the match is {0}\n\nRuns Scored: {1}\n Balls Played: {2}\nStrike Rate: {3}\nFours: {4}\nSixes: {5}".format(man, runs, balls, strikerate, fours, sixes))
     label.pack(side = 'top')
     mainWindow1.mainloop()
 
 def playerstats(i, x):
-    # highest = i
     if x == 1:
         man = team[i]
         runs = sum(individual_runs[i])
@@ -337,7 +336,7 @@ def playerstats(i, x):
     label.pack(side = 'top')
     mainWindow3.mainloop()
 
-def getplayer():
+def getplayer(): # team 1 (INDIA)
     button2 = list()
     mainWindow2 = tkinter.Tk()
     mainWindow2.title("Player Stats")
@@ -368,14 +367,9 @@ def getplayer():
     button20.pack(side = 'top')
     button21.pack(side = 'top')
 
-    # for i in range(len(team)):
-    #     button2.append(i)
-    #     button2[i] = tkinter.Button(mainWindow2, text = team[i], command = lambda: playerstats(i))
-    #     button2[i].pack(side = 'top')
     mainWindow2.mainloop()
 
-def getplayer1():
-    # button2 = list()
+def getplayer1(): # team 2 (New Zealand)
     mainWindow4 = tkinter.Tk()
     mainWindow4.title("Player Stats")
     mainWindow4.geometry('640x480')
@@ -405,30 +399,30 @@ def getplayer1():
     button20.pack(side = 'top')
     button21.pack(side = 'top')
 
-    # for i in range(len(team)):
-    #     button2.append(i)
-    #     button2[i] = tkinter.Button(mainWindow2, text = team[i], command = lambda: playerstats(i))
-    #     button2[i].pack(side = 'top')
     mainWindow4.mainloop()
 
-mainWindow = tkinter.Tk() # initialization of a new TKinter window
+FILENAME = 'ind_vs_newzealand.jpg' # image location
+# FILENAME = '/Users/nilay/ind_vs_newzealand.jpg' # image location
+root = tkinter.Tk()
+root.geometry('640x480')
+root.title("Cricket SCORECARD")
+canvas = tkinter.Canvas(root, width=640, height=480)
+canvas.pack()
+tk_img = ImageTk.PhotoImage(file = FILENAME)
+canvas.create_image(300, 250, image=tk_img)
 
-mainWindow.title("Cricket SCORECARD")
-mainWindow.geometry('640x480')
-label = tkinter.Label(mainWindow, text = "Cricket SCORECARD\n\n")
-label.pack(side = 'top')
 B = tkinter.Button(text ="Click to display graphs", command = graphs, activeforeground="red",fg="green",relief="ridge", borderwidth = 2)
-B.pack(side = 'top')
+b = canvas.create_window(300, 100, window = B)
 x1 = highest
 button2 = tkinter.Button(text = "Man of the match stats", command = lambda: motm(x1))
-button2.pack(side = 'top')
+b2 = canvas.create_window(300, 150, window = button2)
+button3 = tkinter.Button(text = "INDIA: Player Stats", command = getplayer)
+b3 = canvas.create_window(300, 200, window = button3)
+button4 = tkinter.Button(text = "New Zealand: Player Stats", command = getplayer1)
+b4 = canvas.create_window(300, 250, window = button4)
 
-button3 = tkinter.Button(text = "Team 1 Player Stats", command = getplayer)
-button3.pack(side = 'top')
+root.mainloop()
 
-button4 = tkinter.Button(text = "Team 2 Player Stats", command = getplayer1)
-button4.pack(side = 'top')
-
-
-mainWindow.mainloop()
-
+# END OF CODE
+# TEAM MEMBERS: Nilay Gupta, Aditya Prasanna, Avi Bansal (SECTION N)
+# GITHUB repository: https://github.com/nilay1024/Cricket_project.git
